@@ -268,7 +268,7 @@ let g:quickrun_config = {
 \       "runner/vimproc/updatetime" : 10,
 \   },
 \  "ruby.rspec" : {
-\       "command": "rspec",
+\       "command": "bundle exec rspec",
 \       "cmdopt": "-cfd",
 \   },
 \   "go.test": {
@@ -396,7 +396,7 @@ au BufRead,BufNewFile,BufReadPre *.coffee   set filetype=coffee
 " インデント設定
 " オートコンパイル
   "保存と同時にコンパイルする
-autocmd BufWritePost *.coffee silent make! 
+"autocmd BufWritePost *.coffee silent make! 
   "エラーがあったら別ウィンドウで表示
 autocmd QuickFixCmdPost * nested cwindow | redraw! 
 " Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
