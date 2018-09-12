@@ -266,8 +266,9 @@ let g:quickrun_config = {
 \       "runner/vimproc/updatetime" : 10,
 \   },
 \  "ruby.rspec" : {
-\       "command": "bundle exec rspec",
-\       "cmdopt": "-cfd",
+\       "command": "rspec",
+\       "cmdopt": "bundle exec",
+\       "exec": "%o %c %s",
 \   },
 \   "go.test": {
 \       "command" : "go",
@@ -278,12 +279,12 @@ let g:quickrun_config = {
 command! Ql :call QRunRspecCurrentLine()
 fun! QRunRspecCurrentLine()
   let line = line(".")
-  exe ":QuickRun -exec '%c %s%o' -cmdopt ':" . line . " -cfd'"
+  exe ":QuickRun -exec 'bundle exec rspec %s%o' -cmdopt ':" . line . " -cfd'"
 endfun
 
 command! Qf :call QRunRspecCurrentFile()
 fun! QRunRspecCurrentFile()
-  exe ":QuickRun -exec '%c %s' -cfd'"
+  exe ":QuickRun -exec 'bundle exec rspec %s -cfd'"
 endfun
 
 let NERDTreeDirArrows=0
@@ -411,7 +412,9 @@ autocmd QuickFixCmdPost * nested cwindow | redraw!
 " Ctrl-cで右ウィンドウにコンパイル結果を一時表示する
 nnoremap <silent> <C-C> :CoffeeCompile vert <CR><C-w>h
 
-set fileencodings=utf-8,euc-jp
+set encoding=utf-8
+set fileencodings=euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
 
 """"" ここまで
 " filetypeの自動検出(最後の方に書いた方がいいらしい)

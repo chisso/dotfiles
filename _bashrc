@@ -7,7 +7,11 @@ fi
 
 LANG=ja_JP.UTF-8
 
-# User specific aliases and functions
-source ~/dotfiles/.git-completion.bash
-
 alias ll='ls -la'
+eval "$(direnv hook bash)"
+
+# User specific aliases and functions
+source ~/dotfiles/.git-prompt.sh
+source ~/dotfiles/.git-completion.bash
+GIT_PS1_SHOWDIRTYSTATE=true
+export PS1='[\u@\h \w\[\033[31m\]$(__git_ps1)\[\033[00m\]]\$ '
